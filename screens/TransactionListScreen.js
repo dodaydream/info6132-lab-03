@@ -38,7 +38,7 @@ export default function TransactionListScreen({ navigation }) {
                 }}
             >
                 <Text style={styles.listItemName}>{item.merchant}</Text>
-                <Text>${item.amount}</Text>
+                <Text>${item.amount.toFixed(2)}</Text>
             </Pressable>
           )}
         />

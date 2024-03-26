@@ -45,14 +45,14 @@ export default function SummaryScreen() {
 
             <View style={styles.listItem}>
                 <Text style={styles.listItemName}>{highSpending.merchant}</Text>
-                <Text>${highSpending.amount}</Text>
+                <Text>${highSpending.amount.toFixed(2)}</Text>
             </View>
 
             <Text style={styles.listSection}>Low Spending</Text>
 
             <View style={styles.listItem}>
                 <Text style={styles.listItemName}>{lowSpending.merchant}</Text>
-                <Text>${lowSpending.amount}</Text>
+                <Text>${lowSpending.amount.toFixed(2)}</Text>
             </View>
         </View>
     );

@@ -33,7 +33,7 @@ export default function TransactionDetailScreen({ route }) {
     return (
         <>
         <View style={styles.cover}>
-            <Text style={styles.amount}>${data.amount}</Text>
+            <Text style={styles.amount}>${data.amount.toFixed(2)}</Text>
             <Text>{data.merchant}</Text>
             <Text>{data.location}</Text>
         </View>
