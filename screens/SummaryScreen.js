@@ -1,4 +1,5 @@
 import { Text, View, StyleSheet } from 'react-native';
+import { useState, useEffect } from 'react';
 import DataStore from '../data/data';
 
 const styles = StyleSheet.create({
@@ -24,11 +25,30 @@ const styles = StyleSheet.create({
 
 export default function SummaryScreen() {
 
-    const transactionCount = DataStore.getTransactionCount();
-    const transactionTotal = DataStore.getTransactionTotal();
+    const [transactionCount, setTransactionCount] = useState(0);
+    const [transactionTotal, setTransactionTotal] = useState(0);
 
-    const highSpending = DataStore.getHighSpending();
-    const lowSpending = DataStore.getLowSpending();
+    const [highSpending, setHighSpending] = useState({ merchant: '', amount: 0 });
+    const [lowSpending, setLowSpending] = useState({ merchant: '', amount: 0 });
+
+    useEffect(() => {
+        DataStore.getTransactionCount().then((count) => {
+            setTransactionCount(count);
+        });
+
+        DataStore.getTransactionTotal().then((total) => {
+            setTransactionTotal(total);
+        });
+
+        DataStore.getHighSpending().then((high) => {
+            setHighSpending(high);
+        });
+
+        DataStore.getLowSpending().then((low) => {
+            setLowSpending(low);
+        });
+    }, []);
+
     return (
         <View>
             <View style={styles.listItem}>

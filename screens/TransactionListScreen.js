@@ -5,6 +5,8 @@ import {
     Pressable
  } from 'react-native';
 
+ import { useState, useEffect } from 'react';
+
 import DataStore from '../data/data';
 
 const styles = StyleSheet.create({
@@ -25,11 +27,18 @@ const styles = StyleSheet.create({
 });
 
 export default function TransactionListScreen({ navigation }) {
-    const data = DataStore.getTransactions();
+
+    const [transactions, setTransactions] = useState([]);
+
+    useEffect(() => {
+        DataStore.getTransactions().then((data) => {
+            setTransactions(data);
+        });
+    }, []);
 
     return (
         <FlatList
-          data={data}
+          data={transactions}
           renderItem={({ item }) => (
             <Pressable
                 style={styles.listItem}
